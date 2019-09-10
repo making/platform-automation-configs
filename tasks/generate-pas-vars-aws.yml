@@ -4,6 +4,9 @@ inputs:
 - name: env
 outputs:
 - name: generated-vars
+params:
+  CERT_PEM: ""
+  KEY_PEM: ""
 run:
   path: bash
   args: 
