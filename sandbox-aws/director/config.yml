@@ -138,7 +138,7 @@ resource-configuration:
     persistent_disk:
       size_mb: automatic
     instance_type:
-      id: m4.large
+      id: automatic
     internet_connected: false
 vmextensions-configuration:
 - name: spot-instance-m4-large
