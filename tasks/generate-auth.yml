@@ -1,0 +1,18 @@
+platform: linux
+outputs:
+- name: generated-config
+params:
+  OM_USERNAME:
+  OM_PASSWORD:
+  OM_DECRYPTION_PASSPHRASE:
+run:
+  path: bash
+  args: 
+  - -c
+  - |
+    set -eox pipefail
+    cat <<EOF > generated-config/auth.yml
+    username: ${OM_USERNAME}
+    password: ${OM_PASSWORD}
+    decryption-passphrase: ${OM_DECRYPTION_PASSPHRASE}
+    EOF
