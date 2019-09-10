@@ -1,0 +1,26 @@
+platform: linux
+inputs:
+- name: terraform-state
+outputs:
+- name: env
+params:
+  OM_USERNAME:
+  OM_PASSWORD:
+  OM_DECRYPTION_PASSPHRASE:
+  OM_SKIP_SSL_VALIDATION: true
+run:
+  path: bash
+  args: 
+  - -c
+  - |
+    set -eox pipefail
+    TF_STATE=terraform-state/terraform.tfstate
+    OM_TARGET=https://$(terraform output --state=${TF_STATE} ops_manager_dns)
+
+    cat <<EOF > env/env.yml
+    target: ${OM_TARGET}
+    skip-ssl-validation: ${OM_SKIP_SSL_VALIDATION}
+    username: ${OM_USERNAME}
+    password: ${OM_PASSWORD}
+    decryption-passphrase: ${OM_DECRYPTION_PASSPHRASE}
+    EOF
