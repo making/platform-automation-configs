@@ -2,7 +2,7 @@ platform: linux
 inputs:
 - name: terraform-state
 outputs:
-- name: env
+- name: generated-env
 params:
   OM_USERNAME:
   OM_PASSWORD:
@@ -17,7 +17,7 @@ run:
     TF_STATE=terraform-state/terraform.tfstate
     OM_TARGET=https://$(terraform output --state=${TF_STATE} ops_manager_dns)
 
-    cat <<EOF > env/env.yml
+    cat <<EOF > generated-env/env.yml
     target: ${OM_TARGET}
     skip-ssl-validation: ${OM_SKIP_SSL_VALIDATION}
     username: ${OM_USERNAME}
