@@ -5,6 +5,7 @@ inputs:
 outputs:
 - name: generated-vars
 params:
+  ENV_FILE: env.yml
   CERT_PEM: ""
   KEY_PEM: ""
 run:
