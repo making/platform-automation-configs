@@ -3,6 +3,9 @@ inputs:
 - name: terraform-state
 outputs:
 - name: generated-vars
+params:
+  VPC_CIDR:
+  OM_TRUSTED_CERTS: ""
 run:
   path: bash
   args: 
@@ -91,7 +94,7 @@ run:
     export TCP_TARGET_GROUPS="[$(terraform output --state=${TF_STATE} tcp_target_groups | tr -d '\n')]"
     export ISTIO_TARGET_GROUPS="[$(terraform output --state=${TF_STATE} istio_target_groups | tr -d '\n')]"
 
-    cat <<EOF > generated-vars/aws.yml
+    cat <<EOF > generated-vars/director.yml
     access_key_id: ${ACCESS_KEY_ID}
     secret_access_key: ${SECRET_ACCESS_KEY}
     security_group: ${SECURITY_GROUP}
