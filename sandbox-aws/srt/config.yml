@@ -254,7 +254,7 @@ resource-config:
       id: m4.large
     additional_vm_extensions:
     - spot-instance-m4-large
-    - pas-istio-lb
+    # - pas-istio-lb
   route_syncer:
     instances: 0
     instance_type:
