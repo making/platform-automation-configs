@@ -61,7 +61,7 @@ run:
     EOF
     `
 
-    cat <<EOF
+    cat <<EOF > generated-vars/pas.yml
     cert_pem: |
     ${CERT_PEM}
     key_pem: |
