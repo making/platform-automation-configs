@@ -275,7 +275,7 @@ vmtypes-configuration:
   - cpu: 4
     ephemeral_disk: 65536
     name: m4.xlarge
-    ram: 15360
+    ram: 16384
     raw_instance_storage: false
   - cpu: 4
     ephemeral_disk: 131072
