@@ -43,7 +43,7 @@ product-properties:
   .mysql_monitor.recipient_email:
     value: notify@example.com
   .properties.system_database:
-    value: external
+    value: internal
   .properties.system_database.external.host:
     value: ((rds_address))
   .properties.system_database.external.port:
@@ -104,7 +104,7 @@ product-properties:
     value: 
       secret: ((rds_password))
   .properties.uaa_database:
-    value: external
+    value: internal
   .properties.uaa_database.external.host:
     value: ((rds_address))
   .properties.uaa_database.external.port:
@@ -117,7 +117,7 @@ product-properties:
   .properties.uaa_database.external.ca_cert:
     value:  ((rds_ca))
   .properties.credhub_database:
-    value: external
+    value: internal
   .properties.credhub_database.external.host:
     value: ((rds_address))
   .properties.credhub_database.external.port:
