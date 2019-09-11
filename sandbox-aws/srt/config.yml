@@ -43,7 +43,7 @@ product-properties:
   .mysql_monitor.recipient_email:
     value: notify@example.com
   .properties.system_database:
-    value: internal_mysql
+    value: internal_pxc
   # .properties.system_database.external.host:
   #   value: ((rds_address))
   # .properties.system_database.external.port:
