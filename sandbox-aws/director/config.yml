@@ -142,70 +142,70 @@ resource-configuration:
     internet_connected: false
 vmtypes-configuration:
   vm_types:
-  - cpu: 1
+  - cpu: 2
     ephemeral_disk: 8192
     name: t3.micro
     ram: 1024
     raw_instance_storage: false
-  - cpu: 1
+  - cpu: 2
     ephemeral_disk: 8192
     name: t3.small
     ram: 2048
     raw_instance_storage: false
-  - cpu: 1
+  - cpu: 2
     ephemeral_disk: 32768
     name: t3.medium
-    ram: 3840
+    ram: 4096
     raw_instance_storage: false
   - cpu: 2
     ephemeral_disk: 32768
     name: c5.large
-    ram: 3840
+    ram: 4096
     raw_instance_storage: false
   - cpu: 2
     ephemeral_disk: 32768
     name: m5.large
-    ram: 7680
+    ram: 8192
     raw_instance_storage: false
   - cpu: 2
     ephemeral_disk: 65536
     name: r5.large
-    ram: 15616
+    ram: 16384
     raw_instance_storage: false
   - cpu: 4
     ephemeral_disk: 65536
     name: c5.xlarge
-    ram: 7680
+    ram: 8192
     raw_instance_storage: false
   - cpu: 4
     ephemeral_disk: 65536
     name: m5.xlarge
-    ram: 15616
+    ram: 16384
     raw_instance_storage: false
   - cpu: 4
     ephemeral_disk: 131072
     name: r5.xlarge
-    ram: 31232
+    ram: 32768
     raw_instance_storage: false
   - cpu: 8
     ephemeral_disk: 131072
     name: c5.2xlarge
-    ram: 15616
+    ram: 16384
     raw_instance_storage: false
   - cpu: 8
     ephemeral_disk: 131072
     name: m5.2xlarge
-    ram: 30720
+    ram: 32768
     raw_instance_storage: false
   - cpu: 8
     ephemeral_disk: 262144
     name: r5.2xlarge
-    ram: 62464
+    ram: 65536
     raw_instance_storage: false
   - cpu: 16
     ephemeral_disk: 262144
     name: c5.4xlarge
-    ram: 30720
+    ram: 32768
     raw_instance_storage: false
   - cpu: 16
     ephemeral_disk: 262144
@@ -215,7 +215,7 @@ vmtypes-configuration:
   - cpu: 16
     ephemeral_disk: 524288
     name: r5.4xlarge
-    ram: 124928
+    ram: 131072
     raw_instance_storage: false
   - cpu: 36
     ephemeral_disk: 524288
