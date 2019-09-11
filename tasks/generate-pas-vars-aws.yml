@@ -19,8 +19,8 @@ run:
     export AVAILABILITY_ZONES=$(terraform output --state=${TF_STATE} --json azs | jq -r '.value | map({name: .})' | tr -d '\n' | tr -d '"')
     export AVAILABILITY_ZONE_NAMES=$(terraform output --state=${TF_STATE} azs | tr -d '\n' | tr -d '"')
     export SYSTEM_DOMAIN=$(terraform output --state=${TF_STATE} sys_domain)
-    export PAS_MAIN_NETWORK_NAME=pas-deployment
-    export PAS_SERVICES_NETWORK_NAME=pas-services
+    export PAS_MAIN_NETWORK_NAME=deployment
+    export PAS_SERVICES_NETWORK_NAME=services
     export APPS_DOMAIN=$(terraform output --state=${TF_STATE} apps_domain)
     export SYSTEM_DOMAIN=$(terraform output --state=${TF_STATE} sys_domain)
     export WEB_TARGET_GROUPS=$(terraform output --state=${TF_STATE} web_target_groups | tr -d '\n')
