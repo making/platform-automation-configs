@@ -13,7 +13,7 @@ run:
   args: 
   - -c
   - |
-    set -eox pipefail
+    set -eo pipefail
     TF_STATE=terraform-state/terraform.tfstate
     export SINGLETON_AVAILABILITY_ZONE=$(terraform output --state=${TF_STATE} --json azs | jq -r '.value[0]')
     export AVAILABILITY_ZONES=$(terraform output --state=${TF_STATE} --json azs | jq -r '.value | map({name: .})' | tr -d '\n' | tr -d '"')
