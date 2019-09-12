@@ -168,6 +168,8 @@ product-properties:
     value: ((smtp_enable_starttls))
   .properties.metric_registrar_enabled:
     value: 1
+  .properties.metric_registrar_blacklisted_tags:
+    value: deployment,job,index
   # .properties.istio:
   #   value: enable
   # .properties.istio_frontend_tls_keypairs:
