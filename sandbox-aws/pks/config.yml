@@ -7,7 +7,7 @@ product-properties:
   .properties.pks_api_hostname:
     value: ((api_hostname))
   .properties.bosh-metric-sink-node-exporter:
-    value: false
+    value: true
   .properties.bosh-metric-sink-outputs:
     value: |
       [[outputs.discard]]
@@ -29,7 +29,7 @@ product-properties:
   .properties.network_selector.flannel.service_cluster_cidr:
     value: 10.100.200.0/24
   .properties.node_exporter_deploy:
-    value: false
+    value: true
   .properties.oidc_selector:
     value: enabled
   .properties.oidc_selector.enabled.groups_claim:
