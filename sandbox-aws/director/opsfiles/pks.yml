@@ -1,0 +1,41 @@
+- type: replace
+  path: /networks-configuration/networks/0
+  value:
+    name: ((pks_network_name))
+    subnets:
+    - iaas_identifier: ((pks_iaas_identifier_0))
+      cidr: ((pks_network_cidr_0))
+      dns: ((pks_dns_0))
+      gateway: ((pks_gateway_0))
+      reserved_ip_ranges: ((pks_reserved_ip_ranges_0))
+      availability_zone_names:
+      - ((pks_availability_zones_0))
+    - iaas_identifier: ((pks_iaas_identifier_1))
+      cidr: ((pks_network_cidr_1))
+      dns: ((pks_dns_1))
+      gateway: ((pks_gateway_1))
+      reserved_ip_ranges: ((pks_reserved_ip_ranges_1))
+      availability_zone_names:
+      - ((pks_availability_zones_1))
+    - iaas_identifier: ((pks_iaas_identifier_2))
+      cidr: ((pks_network_cidr_2))
+      dns: ((pks_dns_2))
+      gateway: ((pks_gateway_2))
+      reserved_ip_ranges: ((pks_reserved_ip_ranges_2))
+      availability_zone_names:
+      - ((pks_availability_zones_2))
+
+- type: remove
+  path: /vmextensions-configuration/name=pas-web-lb?
+
+- type: replace
+  path: /vmextensions-configuration/name=pks-api-lb?
+  value: 
+    name: pks-api-lb
+    cloud_properties:
+      lb_target_groups:
+      - ((pks_api_8443))
+      - ((pks_api_9021))
+      security_groups:
+      - ((pks_api_lb_security_group))
+      - ((vms_security_group))
