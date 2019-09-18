@@ -128,6 +128,8 @@ product-properties:
     value: 60
   .properties.telemetry_selector.enabled.environment_provider:
     value: none
+  .properties.telemetry_installation_purpose_selector:
+    value: demo_or_poc
   .properties.telemetry_selector.enabled.telemetry_polling_interval:
     value: 600
   .properties.telemetry_selector.enabled.telemetry_url:
