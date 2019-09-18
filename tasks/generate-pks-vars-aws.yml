@@ -2,13 +2,14 @@ platform: linux
 inputs:
 - name: terraform-state
 - name: env
+- name: config
 outputs:
 - name: generated-vars
 params:
   ENV_FILE: env.yml
   CERT_PEM: ""
   KEY_PEM: ""
-  ADDONS_DIR: ""
+  ADDONS_FILES: "addons/*.yml"
 run:
   path: bash
   args: 
@@ -55,5 +56,5 @@ run:
     availability_zones: ${AVAILABILITY_ZONES}
     singleton_availability_zone: ${SINGLETON_AVAILABILITY_ZONE}
     addons_spec: |
-    $(cat <(for f in `ls ${ADDONS_DIR}/*.yml`;do cat $f;echo;echo "---";done) | sed 's/^/  /')
+    $(cat <(for f in `ls config/${ADDON_FILES}`;do cat $f;echo;echo "---";done) | sed 's/^/  /')
     EOF
