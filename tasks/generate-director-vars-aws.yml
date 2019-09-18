@@ -64,7 +64,7 @@ run:
     export DEPLOYMENT_DNS_2=${DNS}
     export DEPLOYMENT_GATEWAY_2=$(terraform output --state=${TF_STATE} -json pas_subnet_gateways | jq -r '.value[2]')
     export DEPLOYMENT_AVAILABILITY_ZONES_2=$(terraform output --state=${TF_STATE} -json pas_subnet_availability_zones | jq -r '.value[2]')
-    if [ "${INFRASTRUCTURE_IAAS_IDENTIFIER_0}" == "" ];then
+    if [ "${DEPLOYMENT_IAAS_IDENTIFIER_0}" == "" ];then
         # Switch to PKS
         export DEPLOYMENT_IAAS_IDENTIFIER_0=$(terraform output --state=${TF_STATE} -json pks_subnet_ids | jq -r '.value[0]')
         export DEPLOYMENT_NETWORK_CIDR_0=$(terraform output --state=${TF_STATE} -json pks_subnet_cidrs | jq -r '.value[0]')
