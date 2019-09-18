@@ -9,7 +9,7 @@ params:
   ENV_FILE: env.yml
   CERT_PEM: ""
   KEY_PEM: ""
-  ADDONS_FILES: "addons/*.yml"
+  ADDON_FILES: "addons/*.yml"
 run:
   path: bash
   args: 
