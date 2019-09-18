@@ -71,14 +71,21 @@ product-properties:
     value: 0
   .properties.plan1_selector.active.master_instances:
     value: 1
+  .properties.plan1_selector.active.master_vm_type:
+    value: t2.medium
   .properties.plan1_selector.active.max_worker_instances:
     value: 50
   .properties.plan1_selector.active.name:
     value: small-privileged
   .properties.plan1_selector.active.worker_instances:
     value: 1
+  .properties.plan1_selector.active.worker_vm_type:
+    value: t2.medium
   .properties.plan1_selector.active.addons_spec:
     value: ((addons_spec))
+  .properties.plan1_selector.active.admission_plugins:
+    value:
+    - deny_escalating_exec
   .properties.plan2_selector:
     selected_option: inactive
     value: Plan Inactive
