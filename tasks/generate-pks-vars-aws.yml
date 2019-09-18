@@ -1,0 +1,59 @@
+platform: linux
+inputs:
+- name: terraform-state
+- name: env
+outputs:
+- name: generated-vars
+params:
+  ENV_FILE: env.yml
+  CERT_PEM: ""
+  KEY_PEM: ""
+  ADDONS_DIR: ""
+run:
+  path: bash
+  args: 
+  - -c
+  - |
+    set -eo pipefail
+
+    TF_STATE=terraform-state/terraform.tfstate
+    export PKS_DOMAIN=$(terraform output --state=${TF_STATE} pks_api_endpoint)
+    export PKS_MAIN_NETWORK_NAME=deployment
+    export PKS_SERVICES_NETWORK_NAME=services
+    export SINGLETON_AVAILABILITY_ZONE=$(terraform output --state=${TF_STATE} --json azs | jq -r '.value[0]')
+    export AVAILABILITY_ZONES=$(terraform output --state=${TF_STATE} --json azs | jq -r '.value | map({name: .})' | tr -d '\n' | tr -d '"')
+    export AVAILABILITY_ZONE_NAMES=$(terraform output --state=${TF_STATE} azs | tr -d '\n' | tr -d '"')
+    export OM_TARGET=$(terraform output --state=${TF_STATE} ops_manager_dns)
+    if [ "${CERT_PEM}" == "" ];then
+        WILDCARD_DOMAIN=`echo ${OM_TARGET} | sed 's/pcf/*.pks/'`
+        CERTIFICATES=`om --env env/"${ENV_FILE}" generate-certificate -d "${WILDCARD_DOMAIN}"`
+        CERT_PEM=`echo $CERTIFICATES | jq -r '.certificate'`
+        KEY_PEM=`echo $CERTIFICATES | jq -r '.key'`
+    fi
+    export CERT_PEM=`cat <<EOF | sed 's/^/  /'
+    ${CERT_PEM}
+    EOF
+    `
+    export KEY_PEM=`cat <<EOF | sed 's/^/  /'
+    ${KEY_PEM}
+    EOF
+    `
+    export INSTANCE_PROFILE_MASTER=$(terraform output --state=${TF_STATE} pks_master_iam_instance_profile_name)
+    export INSTANCE_PROFILE_WORKER=$(terraform output --state=${TF_STATE} pks_worker_iam_instance_profile_name)
+
+    cat <<EOF > generated-vars/pks.yml
+    cert_pem: |
+    ${CERT_PEM}
+    key_pem: |
+    ${KEY_PEM}
+    api_hostname: ${PKS_DOMAIN}
+    availability_zone_names: ${AVAILABILITY_ZONE_NAMES}
+    instance_profile_master: ${INSTANCE_PROFILE_MASTER}
+    instance_profile_worker: ${INSTANCE_PROFILE_WORKER}
+    pks_main_network_name: ${PKS_MAIN_NETWORK_NAME}
+    pks_services_network_name: ${PKS_SERVICES_NETWORK_NAME}
+    availability_zones: ${AVAILABILITY_ZONES}
+    singleton_availability_zone: ${SINGLETON_AVAILABILITY_ZONE}
+    addons_spec: |
+    $(cat <(for f in `ls ${ADDONS_DIR}/*.yml`;do cat $f;echo;echo "---";done) | sed 's/^/  /')
+    EOF
